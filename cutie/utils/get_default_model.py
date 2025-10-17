@@ -24,7 +24,7 @@ def get_default_model(model_path: str| None = None) -> CUTIE:
 
     # Load the network weights
     cutie = CUTIE(cfg).cuda().eval()
-    model_weights = torch.load(cfg.weights)
+    model_weights = torch.load(cfg.weights, weights_only=True)
     cutie.load_weights(model_weights)
 
     return cutie

@@ -2,7 +2,7 @@
 big_modules.py - This file stores higher-level network blocks.
 
 x - usually denotes features that are shared between objects.
-g - usually denotes features that are not shared between objects 
+g - usually denotes features that are not shared between objects
     with an extra "num_objects" dimension (batch_size * num_objects * num_channels * H * W).
 
 The trailing number of a variable usually denotes the stride
@@ -286,7 +286,7 @@ class MaskDecoder(nn.Module):
 
             p8 = self.up_16_8(p16, f8)
             p4 = self.up_8_4(p8, f4)
-            with torch.cuda.amp.autocast(enabled=False):
+            with torch.amp.autocast('cuda', enabled=False):
                 logits = self.pred(F.relu(p4.flatten(start_dim=0, end_dim=1).float()))
 
             if update_sensory:
